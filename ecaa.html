@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Question for Ecaa</title>
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="script.js"/>
+</head>
+<body>
+
+<!-- floating emoji background -->
+<div class="hearts"></div>
+
+<audio id="music" src="musik.mp3" loop></audio>
+
+<div class="card" id="main">
+    <img src="bear1.jpg">
+    <h1>Apakah kamu menyukaiku? 😳💗</h1>
+    <button id="yes">Iyaa 🤭</button>
+    <button id="no">Tidak 😝</button>
+</div>
+
+<!-- <div>
+    <ul class="pesan-ecaa">
+        <li class="isi-pesan">
+            <a href="pesan.html">PESAN</a>
+        </li>
+    </ul>
+</div> -->
+
+<!-- Slide Yes -->
+<div class="result" id="yesPage">
+    <h2>Sudah kuduga ecaa pasti menyukai aku 🤭😜</h2>
+    <img src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/xiong-mao-yi-erdi-qi-dan-1/sticker_7.gif?181c9fd3cd73e65b847d9a48c508f2c6&d=200x200" style="width: 200px">
+    <button class="back" onclick="goBack()">kembali</button>
+</div>
+
+<!-- Slide No (tetap berakhir love) -->
+<div class="result" id="noPage">
+    <h2>Tidak ada cowo lain yang kusuka selain dimass!!! 🤩😜</h2>
+    <img src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/xiong-mao-yi-erdi-qi-dan-1/sticker_6.gif?181c9fd3cd73e65b847d9a48c508f2c6" style="width: 200px;">
+    <button class="back" onclick="goBack()">kembali</button>
+</div>
+
+<script>
+    // background hearts generator
+for(let i=0;i<25;i++){
+    let h=document.createElement("span");
+    h.innerHTML=["💗","💞","💕","✨","💖"][Math.floor(Math.random()*5)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDelay=Math.random()*5+"s";
+    document.querySelector(".hearts").appendChild(h);
+}
+
+function confetti(){
+    for(let i=0;i<30;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.innerHTML=["💗","✨","💖","💕"][Math.floor(Math.random()*4)];
+        c.style.left=Math.random()*100+"vw";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+// Play music on first interaction
+function playMusic(){document.getElementById("music").play();}
+
+document.getElementById("yes").onclick=()=>{
+    playMusic();
+    document.getElementById("main").style.display="none";
+    document.getElementById("yesPage").style.display="flex";
+    confetti();
+}
+
+let noBtn=document.getElementById("no");
+noBtn.onmouseover=function(){
+    noBtn.style.top=Math.random()*150-80+"px";
+    noBtn.style.left=Math.random()*150-80+"px";
+}
+noBtn.onclick=()=>{
+    playMusic();
+    document.getElementById("main").style.display="none";
+    document.getElementById("noPage").style.display="flex";
+    confetti();
+}
+
+function goBack(){
+    document.getElementById("yesPage").style.display="none";
+    document.getElementById("noPage").style.display="none";
+    document.getElementById("main").style.display="block";
+}
+</script>
+</body>
+</html>
